@@ -27,6 +27,7 @@ from translation import Translation
 
 import pyrogram
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
+from pyrogram.enums import ParseMode
 
 from helper_funcs.display_progress import progress_for_pyrogram, humanbytes
 from hachoir.metadata import extractMetadata
@@ -333,7 +334,7 @@ async def youtube_dl_call_back(bot, update):
                                 InputMediaPhoto(
                                     media=image,
                                     caption=caption,
-                                    parse_mode="html"
+                                    parse_mode=ParseMode.HTML
                                 )
                             )
                         else:
