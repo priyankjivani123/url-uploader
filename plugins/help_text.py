@@ -22,6 +22,7 @@ from translation import Translation
 
 import pyrogram
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
+from pyrogram.enums import ParseMode
 
 def GetExpiryDate(chat_id):
     expires_at = (str(chat_id), "Source Cloned User", "1970.01.01.12.00.00")
@@ -71,7 +72,7 @@ async def upgrade(bot, update):
     await bot.send_message(
         chat_id=update.chat.id,
         text=Translation.UPGRADE_TEXT,
-        parse_mode="html",
+        parse_mode=ParseMode.HTML,
         reply_to_message_id=update.id,
         disable_web_page_preview=True
     )
