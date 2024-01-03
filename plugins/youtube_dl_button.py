@@ -299,30 +299,18 @@ async def youtube_dl_call_back(bot, update):
                     )
                 )
             elif tg_send_type == "video":
-                print(thumb_image_path)
-                print("priyanktedt")
-                print(width)
-                print(height)
-                # Assume thumb_file_path is the path to the thumbnail image file
-                thumb_message = await bot.send_photo(
-                    chat_id=update.message.chat.id,
-                    photo=open(thumb_image_path, 'rb'),
-                    caption="Thumbnail caption"  # Add a caption if needed
-                )
                 
-                thumb_file_id = thumb_message.photo[-1].file_id  # Extract the file_id of the last photo sent
-                
-                # Now use the thumb_file_id while sending the video
                 await bot.send_video(
                     chat_id=update.message.chat.id,
-                    video=open(download_directory, 'rb'),
+                    video=download_directory,
                     caption=description,
                     parse_mode=ParseMode.HTML,
-                    thumb=thumb_file_id,
                     duration=duration,
                     width=width,
                     height=height,
                     supports_streaming=True,
+                    # reply_markup=reply_markup,
+                    thumb="https://i.ibb.co/ZGcMH6w/images-25.jpg",
                     reply_to_message_id=update.message.reply_to_message.id,
                     progress=progress_for_pyrogram,
                     progress_args=(
@@ -331,7 +319,6 @@ async def youtube_dl_call_back(bot, update):
                         start_time
                     )
                 )
-
             else:
                 logger.info("Did this happen? :\\")
             end_two = datetime.now()
