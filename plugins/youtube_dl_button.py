@@ -303,24 +303,34 @@ async def youtube_dl_call_back(bot, update):
                 print("priyanktedt")
                 print(width)
                 print(height)
-                await bot.send_video(
-    chat_id=update.message.chat.id,
-                video=open(download_directory, 'rb'),  # Corrected the video parameter
-                caption=description,
-                parse_mode=ParseMode.HTML,
-                thumb=open(thumb_image_path, 'rb'),  # Corrected the thumb parameter
-                duration=duration,
-                width=width,
-                height=height,
-                supports_streaming=True,
-                reply_to_message_id=update.message.reply_to_message.id,
-                progress=progress_for_pyrogram,
-                progress_args=(
-                    Translation.UPLOAD_START,
-                    update.message,
-                    start_time
+                # Assume thumb_file_path is the path to the thumbnail image file
+                thumb_message = await bot.send_photo(
+                    chat_id=update.message.chat.id,
+                    photo=open(thumb_file_path, 'rb'),
+                    caption="Thumbnail caption"  # Add a caption if needed
                 )
-            )
+                
+                thumb_file_id = thumb_message.photo[-1].file_id  # Extract the file_id of the last photo sent
+                
+                # Now use the thumb_file_id while sending the video
+                await bot.send_video(
+                    chat_id=update.message.chat.id,
+                    video=open(download_directory, 'rb'),
+                    caption=description,
+                    parse_mode=ParseMode.HTML,
+                    thumb=thumb_file_id,
+                    duration=duration,
+                    width=width,
+                    height=height,
+                    supports_streaming=True,
+                    reply_to_message_id=update.message.reply_to_message.id,
+                    progress=progress_for_pyrogram,
+                    progress_args=(
+                        Translation.UPLOAD_START,
+                        update.message,
+                        start_time
+                    )
+                )
 
             else:
                 logger.info("Did this happen? :\\")
