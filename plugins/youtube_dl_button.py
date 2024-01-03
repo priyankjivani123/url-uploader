@@ -304,24 +304,24 @@ async def youtube_dl_call_back(bot, update):
                 print(width)
                 print(height)
                 await bot.send_video(
-                    chat_id=update.message.chat.id,
-                    video=download_directory,
-                    caption=description,
-                    parse_mode=ParseMode.HTML,
-                    duration=duration,
-                    width=width,
-                    height=height,
-                    supports_streaming=True,
-                    # reply_markup=reply_markup,
-                    thumb=thumb_image_path,
-                    reply_to_message_id=update.message.reply_to_message.id,
-                    progress=progress_for_pyrogram,
-                    progress_args=(
-                        Translation.UPLOAD_START,
-                        update.message,
-                        start_time
-                    )
+    chat_id=update.message.chat.id,
+                video=open(download_directory, 'rb'),  # Corrected the video parameter
+                caption=description,
+                parse_mode=ParseMode.HTML,
+                thumb=open(thumb_image_path, 'rb'),  # Corrected the thumb parameter
+                duration=duration,
+                width=width,
+                height=height,
+                supports_streaming=True,
+                reply_to_message_id=update.message.reply_to_message.id,
+                progress=progress_for_pyrogram,
+                progress_args=(
+                    Translation.UPLOAD_START,
+                    update.message,
+                    start_time
                 )
+            )
+
             else:
                 logger.info("Did this happen? :\\")
             end_two = datetime.now()
