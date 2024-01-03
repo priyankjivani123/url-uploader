@@ -46,6 +46,7 @@ async def youtube_dl_call_back(bot, update):
         "/" + str(update.from_user.id) + ".jpg"
     save_ytdl_json_path = Config.DOWNLOAD_LOCATION + \
         "/" + str(update.from_user.id) + ".json"
+    print(thumb_image_path)
     try:
         with open(save_ytdl_json_path, "r", encoding="utf8") as f:
             response_json = json.load(f)
@@ -298,6 +299,7 @@ async def youtube_dl_call_back(bot, update):
                     )
                 )
             elif tg_send_type == "video":
+                print("priyanktedt")
                 await bot.send_video(
                     chat_id=update.message.chat.id,
                     video=download_directory,
