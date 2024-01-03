@@ -306,7 +306,7 @@ async def youtube_dl_call_back(bot, update):
                 # Assume thumb_file_path is the path to the thumbnail image file
                 thumb_message = await bot.send_photo(
                     chat_id=update.message.chat.id,
-                    photo=open(thumb_file_path, 'rb'),
+                    photo=open(thumb_image_path, 'rb'),
                     caption="Thumbnail caption"  # Add a caption if needed
                 )
                 
