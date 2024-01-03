@@ -267,7 +267,7 @@ async def echo(bot, update):
         thumbnail_image = Config.DEF_THUMB_NAIL_VID_S
         if "thumbnail" in response_json:
             if response_json["thumbnail"] is not None:
-                print("testtufjfjdjkdjdjdjjdjfjdjdjfjfj"):
+                print("testtufjfjdjkdjdjdjjdjfjdjdjfjfj")
                 thumbnail = response_json["thumbnail"]
                 thumbnail_image = response_json["thumbnail"]
         thumb_image_path = DownLoadFile(
