@@ -193,10 +193,19 @@ async def youtube_dl_call_back(bot, update):
         else:
             is_w_f = False
             
+            images = await generate_screen_shots(
+                download_directory,
+                tmp_directory_for_each_user,
+                is_w_f,
+                Config.DEF_WATER_MARK_FILE,
+                300,
+                9
+            )
+            logger.info(images)
             await bot.edit_message_text(
                 text=Translation.UPLOAD_START,
                 chat_id=update.message.chat.id,
-                message_id=update.message.id
+                message_id=update.message.message_id
             )
             # get the correct width, height, and duration for videos greater than 10MB
             # ref: message from @BotSupport
@@ -314,7 +323,6 @@ async def youtube_dl_call_back(bot, update):
             time_taken_for_upload = (end_two - end_one).seconds
             #
             media_album_p = []
-            images ="";
             if images is not None:
                 i = 0
                 caption = "© @TGBotsZ"
