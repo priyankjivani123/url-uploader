@@ -299,7 +299,10 @@ async def youtube_dl_call_back(bot, update):
                     )
                 )
             elif tg_send_type == "video":
+                print(thumb_image_path)
                 print("priyanktedt")
+                print(width)
+                print(height)
                 await bot.send_video(
                     chat_id=update.message.chat.id,
                     video=download_directory,
