@@ -267,6 +267,7 @@ async def echo(bot, update):
         thumbnail_image = Config.DEF_THUMB_NAIL_VID_S
         if "thumbnail" in response_json:
             if response_json["thumbnail"] is not None:
+                print("testtufjfjdjkdjdjdjjdjfjdjdjfjfj"):
                 thumbnail = response_json["thumbnail"]
                 thumbnail_image = response_json["thumbnail"]
         thumb_image_path = DownLoadFile(
@@ -280,9 +281,11 @@ async def echo(bot, update):
             update.chat.id
         )
         if os.path.exists(thumb_image_path):
+            print("exiisstyduddjkfkdkddkdn"):
             im = Image.open(thumb_image_path).convert("RGB")
             im.save(thumb_image_path.replace(".webp", ".jpg"), "jpeg")
         else:
+            print("notjrjdnxjdkskdmdmdnsnn"):
             thumb_image_path = None
         await bot.send_message(
             chat_id=update.chat.id,

@@ -299,7 +299,10 @@ async def youtube_dl_call_back(bot, update):
                     )
                 )
             elif tg_send_type == "video":
-                
+                print(thumb_image_path)
+                print("priyanktedt")
+                print(width)
+                print(height)
                 await bot.send_video(
                     chat_id=update.message.chat.id,
                     video=download_directory,
@@ -310,7 +313,7 @@ async def youtube_dl_call_back(bot, update):
                     height=height,
                     supports_streaming=True,
                     # reply_markup=reply_markup,
-                    thumb="https://i.ibb.co/ZGcMH6w/images-25.jpg",
+                    thumb=thumb_image_path,
                     reply_to_message_id=update.message.reply_to_message.id,
                     progress=progress_for_pyrogram,
                     progress_args=(
